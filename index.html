@@ -113,8 +113,34 @@ h2{font-family:var(--display);font-size:clamp(2.5rem,4vw,3.8rem);line-height:1;l
 .skill-cell-label{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
 .skill-cell-label::before{content:'';display:block;width:16px;height:1px;background:var(--amber)}
 .skill-items{display:flex;flex-direction:column;gap:.35rem}
-.skill-item{font-size:.72rem;color:var(--muted);display:flex;align-items:center;gap:.5rem}
-.skill-item::before{content:'';width:3px;height:3px;background:var(--muted2);border-radius:50%;flex-shrink:0}
+.skill-item{font-size:.72rem;color:var(--muted);display:flex;align-items:center;gap:.5rem;cursor:pointer;padding:.2rem .4rem;margin:0 -.4rem;border-radius:3px;transition:color .15s,background .15s;user-select:none}
+.skill-item::before{content:'';width:3px;height:3px;background:var(--muted2);border-radius:50%;flex-shrink:0;transition:background .15s}
+.skill-item:hover{color:var(--text);background:rgba(245,166,35,.06)}
+.skill-item:hover::before{background:var(--amber)}
+.skill-item.active{color:var(--amber);background:rgba(245,166,35,.1)}
+.skill-item.active::before{background:var(--amber)}
+.skills-hint{font-size:.65rem;color:var(--muted2);letter-spacing:.1em;margin-bottom:2rem;display:flex;align-items:center;gap:.5rem}
+.skills-hint::before{content:'→';color:var(--amber)}
+.skill-panel-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:800;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(4px)}
+.skill-panel-overlay.open{opacity:1;pointer-events:all}
+.skill-panel{position:fixed;top:0;right:0;bottom:0;width:min(520px,100vw);background:var(--bg2);border-left:1px solid var(--border2);z-index:801;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);overflow-y:auto;display:flex;flex-direction:column}
+.skill-panel.open{transform:translateX(0)}
+.panel-header{padding:1.75rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg2);z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
+.panel-skill-name{font-family:var(--display);font-size:2.2rem;line-height:1;letter-spacing:.02em;color:var(--text)}
+.panel-skill-cat{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-top:.3rem}
+.panel-close{background:none;border:1px solid var(--border2);color:var(--muted);font-family:var(--mono);font-size:.7rem;padding:.4rem .8rem;cursor:pointer;transition:all .15s;flex-shrink:0;margin-top:.3rem}
+.panel-close:hover{color:var(--text);border-color:var(--muted)}
+.panel-body{padding:1.75rem;display:flex;flex-direction:column;gap:1.5rem}
+.panel-section-label{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted2);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+.panel-section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.panel-evidence-card{background:var(--bg3);border:1px solid var(--border);border-left:2px solid var(--border2);padding:1.1rem 1.25rem;transition:border-color .15s;margin-bottom:.75rem}
+.panel-evidence-card:hover{border-left-color:var(--amber)}
+.panel-ev-type{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted2);margin-bottom:.3rem}
+.panel-ev-title{font-size:.85rem;color:var(--text);font-weight:500;margin-bottom:.25rem;line-height:1.4}
+.panel-ev-detail{font-size:.72rem;color:var(--muted);line-height:1.7;margin-bottom:.6rem}
+.panel-ev-links{display:flex;gap:.5rem;flex-wrap:wrap}
+.panel-ev-link{font-size:.62rem;letter-spacing:.08em;color:var(--muted);text-decoration:none;border:1px solid var(--border2);padding:.25rem .65rem;transition:all .15s}
+.panel-ev-link:hover{color:var(--amber);border-color:var(--amber)}
 #github{padding:6rem 0;background:var(--bg2)}
 .gh-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
 .gh-card{background:var(--bg2);padding:1.75rem;transition:background .2s;text-decoration:none;display:flex;flex-direction:column;gap:.75rem;position:relative}
@@ -325,18 +351,78 @@ footer{padding:1.25rem 4rem;border-top:1px solid var(--border);display:flex;just
   <div class="container">
     <div class="section-header reveal">
       <div class="section-num">04</div>
-      <div class="section-title-block"><div class="section-label">Technical</div><h2>SKILLS</h2><p class="section-desc">Tools I've shipped real systems with.</p></div>
+      <div class="section-title-block"><div class="section-label">Technical</div><h2>SKILLS</h2><p class="section-desc">Click any skill to see where I used it.</p></div>
     </div>
+    <p class="skills-hint reveal"><span>Click any skill</span>&nbsp;&mdash; see the projects and jobs where I used it</p>
     <div class="skills-table reveal">
-      <div class="skill-cell"><div class="skill-cell-label">AI &amp; LLMs</div><div class="skill-items"><div class="skill-item">GPT-4o / OpenAI API</div><div class="skill-item">LangChain Agents</div><div class="skill-item">HuggingFace Transformers</div><div class="skill-item">BERT / RoBERTa</div><div class="skill-item">Prompt Engineering</div><div class="skill-item">Agentic Workflows</div><div class="skill-item">SHAP / LIME</div></div></div>
-      <div class="skill-cell"><div class="skill-cell-label">ML &amp; Data Science</div><div class="skill-items"><div class="skill-item">PyTorch</div><div class="skill-item">Scikit-learn</div><div class="skill-item">XGBoost / LightGBM</div><div class="skill-item">Prophet / ARIMA</div><div class="skill-item">SMOTE / Imbalanced data</div><div class="skill-item">Feature Engineering</div><div class="skill-item">Model Evaluation</div></div></div>
-      <div class="skill-cell"><div class="skill-cell-label">Data Engineering</div><div class="skill-items"><div class="skill-item">Apache Kafka</div><div class="skill-item">Debezium / CDC</div><div class="skill-item">AWS Glue / Athena</div><div class="skill-item">Azure Data Factory</div><div class="skill-item">dbt / Spark</div><div class="skill-item">DuckDB</div><div class="skill-item">ETL Pipeline Design</div></div></div>
-      <div class="skill-cell"><div class="skill-cell-label">Cloud &amp; DevOps</div><div class="skill-items"><div class="skill-item">AWS Lambda / S3 / MSK</div><div class="skill-item">Azure ADX / Monitor</div><div class="skill-item">Docker / Compose</div><div class="skill-item">FastAPI / Streamlit</div><div class="skill-item">GitHub Actions CI</div><div class="skill-item">pytest / unit testing</div><div class="skill-item">DevSecOps practices</div></div></div>
-      <div class="skill-cell"><div class="skill-cell-label">Languages</div><div class="skill-items"><div class="skill-item">Python</div><div class="skill-item">SQL</div><div class="skill-item">KQL</div><div class="skill-item">PowerShell</div><div class="skill-item">R</div><div class="skill-item">Bash</div></div></div>
-      <div class="skill-cell"><div class="skill-cell-label">Visualization &amp; BI</div><div class="skill-items"><div class="skill-item">Power BI</div><div class="skill-item">Tableau Public</div><div class="skill-item">Plotly / Dash</div><div class="skill-item">AWS QuickSight</div><div class="skill-item">Streamlit</div><div class="skill-item">Matplotlib / Seaborn</div></div></div>
+      <div class="skill-cell"><div class="skill-cell-label">AI &amp; LLMs</div><div class="skill-items">
+        <div class="skill-item" data-skill="GPT-4o">GPT-4o / OpenAI API</div>
+        <div class="skill-item" data-skill="LangChain">LangChain Agents</div>
+        <div class="skill-item" data-skill="HuggingFace">HuggingFace Transformers</div>
+        <div class="skill-item" data-skill="BERT">BERT / RoBERTa</div>
+        <div class="skill-item" data-skill="PromptEngineering">Prompt Engineering</div>
+        <div class="skill-item" data-skill="AgenticAI">Agentic Workflows</div>
+        <div class="skill-item" data-skill="SHAP">SHAP / LIME</div>
+      </div></div>
+      <div class="skill-cell"><div class="skill-cell-label">ML &amp; Data Science</div><div class="skill-items">
+        <div class="skill-item" data-skill="PyTorch">PyTorch</div>
+        <div class="skill-item" data-skill="Scikitlearn">Scikit-learn</div>
+        <div class="skill-item" data-skill="XGBoost">XGBoost / LightGBM</div>
+        <div class="skill-item" data-skill="Prophet">Prophet / ARIMA</div>
+        <div class="skill-item" data-skill="SMOTE">SMOTE / Imbalanced data</div>
+        <div class="skill-item" data-skill="FeatureEngineering">Feature Engineering</div>
+        <div class="skill-item" data-skill="ModelEvaluation">Model Evaluation</div>
+      </div></div>
+      <div class="skill-cell"><div class="skill-cell-label">Data Engineering</div><div class="skill-items">
+        <div class="skill-item" data-skill="Kafka">Apache Kafka</div>
+        <div class="skill-item" data-skill="Debezium">Debezium / CDC</div>
+        <div class="skill-item" data-skill="AWSGlue">AWS Glue / Athena</div>
+        <div class="skill-item" data-skill="AzureADF">Azure Data Factory</div>
+        <div class="skill-item" data-skill="Spark">dbt / Spark</div>
+        <div class="skill-item" data-skill="DuckDB">DuckDB</div>
+        <div class="skill-item" data-skill="ETL">ETL Pipeline Design</div>
+      </div></div>
+      <div class="skill-cell"><div class="skill-cell-label">Cloud &amp; DevOps</div><div class="skill-items">
+        <div class="skill-item" data-skill="AWSLambda">AWS Lambda / S3 / MSK</div>
+        <div class="skill-item" data-skill="AzureADX">Azure ADX / Monitor</div>
+        <div class="skill-item" data-skill="Docker">Docker / Compose</div>
+        <div class="skill-item" data-skill="FastAPI">FastAPI / Streamlit</div>
+        <div class="skill-item" data-skill="GitHubActions">GitHub Actions CI</div>
+        <div class="skill-item" data-skill="pytest">pytest / unit testing</div>
+        <div class="skill-item" data-skill="DevSecOps">DevSecOps</div>
+      </div></div>
+      <div class="skill-cell"><div class="skill-cell-label">Languages</div><div class="skill-items">
+        <div class="skill-item" data-skill="Python">Python</div>
+        <div class="skill-item" data-skill="SQL">SQL</div>
+        <div class="skill-item" data-skill="KQL">KQL</div>
+        <div class="skill-item" data-skill="PowerShell">PowerShell</div>
+        <div class="skill-item" data-skill="R">R</div>
+        <div class="skill-item" data-skill="Bash">Bash</div>
+      </div></div>
+      <div class="skill-cell"><div class="skill-cell-label">Visualization &amp; BI</div><div class="skill-items">
+        <div class="skill-item" data-skill="PowerBI">Power BI</div>
+        <div class="skill-item" data-skill="Tableau">Tableau Public</div>
+        <div class="skill-item" data-skill="Plotly">Plotly / Dash</div>
+        <div class="skill-item" data-skill="QuickSight">AWS QuickSight</div>
+        <div class="skill-item" data-skill="Streamlit">Streamlit</div>
+        <div class="skill-item" data-skill="Matplotlib">Matplotlib / Seaborn</div>
+      </div></div>
     </div>
   </div>
 </section>
+
+<!-- Skill evidence panel -->
+<div class="skill-panel-overlay" id="panelOverlay"></div>
+<div class="skill-panel" id="skillPanel">
+  <div class="panel-header">
+    <div>
+      <div class="panel-skill-name" id="panelSkillName"></div>
+      <div class="panel-skill-cat" id="panelSkillCat"></div>
+    </div>
+    <button class="panel-close" id="panelClose">&#x2715; Close</button>
+  </div>
+  <div class="panel-body" id="panelBody"></div>
+</div>
 
 <section id="github">
   <div class="container">
@@ -386,8 +472,433 @@ footer{padding:1.25rem 4rem;border-top:1px solid var(--border);display:flex;just
 </footer>
 
 <script>
+// ── Scroll reveal ──
 const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.08});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// ── Skill evidence database ──
+const EVIDENCE = {
+  "GPT-4o": {
+    cat: "AI & LLMs",
+    projects: [
+      { title: "Cyber Sentinel", detail: "GPT-4o powers both agents — compliance classification with Reflexion self-critique loop, and Jira ticket generation from violations. Temperature set to 0.0 for deterministic classification.", links: [{ label: "GitHub", href: "https://github.com/abhistac/cyber-sentinel" }] },
+      { title: "Agentic Ticket Manager", detail: "GPT-4o drives all three agents: ticket categorisation (temp 0.0), SLA evaluation, and natural-language Slack alert writing (temp 0.3).", links: [{ label: "GitHub", href: "https://github.com/abhistac/agentic-ticket-manager" }] }
+    ],
+    experience: []
+  },
+  "LangChain": {
+    cat: "AI & LLMs",
+    projects: [
+      { title: "Cyber Sentinel", detail: "LangChain ChatOpenAI wraps all LLM calls — enables model swapping, retry logic, and structured message handling across both agents.", links: [{ label: "GitHub", href: "https://github.com/abhistac/cyber-sentinel" }] },
+      { title: "Agentic Ticket Manager", detail: "LangChain used across all three agents for consistent LLM interaction patterns, system/human message structuring, and easy model versioning.", links: [{ label: "GitHub", href: "https://github.com/abhistac/agentic-ticket-manager" }] }
+    ],
+    experience: []
+  },
+  "HuggingFace": {
+    cat: "AI & LLMs",
+    projects: [
+      { title: "NLP: Condescending Language Detector", detail: "Fine-tuned BERT and RoBERTa using HuggingFace Trainer API on 50K+ workplace communication samples. Applied learning rate warm-up, gradient clipping, and early stopping on validation F1.", links: [] },
+      { title: "FreshRetail Demand Forecasting", detail: "Used HuggingFace Datasets library to load and stream the FreshRetailNet-50K dataset (4.5M+ records) efficiently without loading everything into memory.", links: [{ label: "GitHub", href: "https://github.com/abhistac/freshretail-demand-forecasting" }] }
+    ],
+    experience: []
+  },
+  "BERT": {
+    cat: "AI & LLMs",
+    projects: [
+      { title: "NLP: Condescending Language Detector", detail: "Fine-tuned BERT and RoBERTa on labelled workplace communication data. Tested DistilBERT for latency reduction (40% fewer parameters). Final model achieved 91% accuracy, 0.89 F1 across 50K+ messages.", links: [] }
+    ],
+    experience: [
+      { title: "Saayam For All — AI Engineer", detail: "Applied transformer-based NLP concepts from the condescending language project to build ML inference microservices deployed as AWS Lambda functions.", links: [] }
+    ]
+  },
+  "PromptEngineering": {
+    cat: "AI & LLMs",
+    projects: [
+      { title: "Cyber Sentinel", detail: "Designed a two-pass Reflexion prompt architecture. Pass 1 classifies violations. Pass 2 is a self-critique prompt that asks the model to reconsider severity and control mapping — boosted F1 by ~8% over single-pass.", links: [{ label: "GitHub", href: "https://github.com/abhistac/cyber-sentinel" }] },
+      { title: "Agentic Ticket Manager", detail: "All prompts centralised in core/prompts.py for version control. Each agent has a system prompt defining its role and a structured user prompt with injected context (SLA rules, routing rules, ticket data).", links: [{ label: "GitHub", href: "https://github.com/abhistac/agentic-ticket-manager" }] }
+    ],
+    experience: []
+  },
+  "AgenticAI": {
+    cat: "AI & LLMs",
+    projects: [
+      { title: "Cyber Sentinel", detail: "Two-agent event-driven system: Agent 1 classifies logs, Agent 2 creates Jira tickets. Agents are independent, testable modules connected via structured Pydantic outputs.", links: [{ label: "GitHub", href: "https://github.com/abhistac/cyber-sentinel" }] },
+      { title: "Agentic Ticket Manager", detail: "Three-agent pipeline: Categoriser → SLA Monitor → Notifier. Each agent has a single responsibility, validated I/O, and can be tested independently with mocked LLM calls.", links: [{ label: "GitHub", href: "https://github.com/abhistac/agentic-ticket-manager" }] }
+    ],
+    experience: [
+      { title: "Saayam For All — AI Engineer", detail: "Built Python-based AI microservices on AWS Lambda — event-driven architecture where data ingestion, ML inference, and analytics workflows are independent, scalable agents.", links: [] }
+    ]
+  },
+  "SHAP": {
+    cat: "AI & LLMs",
+    projects: [
+      { title: "NLP: Condescending Language Detector", detail: "Implemented SHAP and LIME to generate word-level explanations for tone predictions. HR users see which specific words triggered the flag, not just a score.", links: [] },
+      { title: "Virginia Mason: Readmission Prediction", detail: "Used SHAP values to identify top 5 readmission drivers: prior admissions, Charlson comorbidity index, length of stay, discharge disposition, CHF diagnosis.", links: [] }
+    ],
+    experience: []
+  },
+  "PyTorch": {
+    cat: "ML & Data Science",
+    projects: [
+      { title: "NLP: Condescending Language Detector", detail: "PyTorch backend for fine-tuning BERT/RoBERTa via HuggingFace Trainer. Custom training loop with AdamW optimiser, cross-entropy loss, and learning rate scheduling.", links: [] }
+    ],
+    experience: [
+      { title: "Saayam For All — AI Engineer", detail: "PyTorch underpins the ML inference microservices deployed on AWS Lambda for real-time beneficiary demand prediction.", links: [] }
+    ]
+  },
+  "Scikitlearn": {
+    cat: "ML & Data Science",
+    projects: [
+      { title: "Fraud Detection System", detail: "Random Forest and Logistic Regression trained with Scikit-learn. Used StratifiedKFold cross-validation, GridSearchCV for hyperparameter tuning, and classification_report for evaluation.", links: [{ label: "GitHub", href: "https://github.com/abhistac/fraud-detection-system" }] },
+      { title: "FreshRetail Demand Forecasting", detail: "HistGradientBoostingRegressor from Scikit-learn used as a strong tree-based baseline alongside XGBoost.", links: [{ label: "GitHub", href: "https://github.com/abhistac/freshretail-demand-forecasting" }] },
+      { title: "Puerto Rico Vulnerability Index", detail: "PCA and Random Forest from Scikit-learn used to reduce 15 indicators to 5 principal components and assign vulnerability weights. 85% accuracy vs Hurricane Maria damage data.", links: [] },
+      { title: "Virginia Mason: Readmission Prediction", detail: "Full model pipeline: preprocessing, SMOTE, Logistic Regression, Random Forest, XGBoost with GridSearchCV. Final XGBoost model: 85% accuracy, 0.82 AUC.", links: [] }
+    ],
+    experience: []
+  },
+  "XGBoost": {
+    cat: "ML & Data Science",
+    projects: [
+      { title: "FreshRetail Demand Forecasting", detail: "XGBoost was the best-performing model — RMSE 10.4, MAPE 3.6% — significantly outperforming Prophet (RMSE 288) on high-volatility retail data with lag, rolling, and calendar features.", links: [{ label: "GitHub", href: "https://github.com/abhistac/freshretail-demand-forecasting" }, { label: "Dashboard", href: "https://public.tableau.com/views/Book1_17558033052330/RetailDemandForecastingExplorer" }] },
+      { title: "Fraud Detection System", detail: "XGBoost included in the ensemble (RF + LightGBM + XGBoost soft voting). Strong regularisation made it most robust to overfitting on the imbalanced 284K transaction dataset.", links: [{ label: "GitHub", href: "https://github.com/abhistac/fraud-detection-system" }] },
+      { title: "Virginia Mason: Readmission Prediction", detail: "XGBoost selected as final model after comparison. scale_pos_weight parameter used to handle class imbalance alongside SMOTE.", links: [] }
+    ],
+    experience: [
+      { title: "Saayam For All — AI Engineer", detail: "XGBoost used in beneficiary churn risk classification models alongside time-series forecasting with Prophet.", links: [] }
+    ]
+  },
+  "Prophet": {
+    cat: "ML & Data Science",
+    projects: [
+      { title: "FreshRetail Demand Forecasting", detail: "Prophet tested as a forecasting baseline. RMSE of 288 vs XGBoost's 10.4 — struggled with high per-SKU volatility and promotion-driven spikes that tree models handle through feature engineering.", links: [{ label: "GitHub", href: "https://github.com/abhistac/freshretail-demand-forecasting" }] }
+    ],
+    experience: [
+      { title: "Saayam For All — AI Engineer", detail: "Prophet used for monthly beneficiary demand forecasting by program type. Handles seasonality and holiday effects well for the community outreach use case. Improved planning efficiency by 25%.", links: [] }
+    ]
+  },
+  "SMOTE": {
+    cat: "ML & Data Science",
+    projects: [
+      { title: "Fraud Detection System", detail: "SMOTE applied to balance the 0.17% fraud rate in the training set. Combined with class_weight tuning and threshold optimisation — net benefit of $5,976 on test data.", links: [{ label: "GitHub", href: "https://github.com/abhistac/fraud-detection-system" }] },
+      { title: "Virginia Mason: Readmission Prediction", detail: "SMOTE used to address 15% readmission rate imbalance in training data. Combined with stratified splits and threshold tuning — F1 improved from 0.65 to 0.78.", links: [] }
+    ],
+    experience: []
+  },
+  "FeatureEngineering": {
+    cat: "ML & Data Science",
+    projects: [
+      { title: "FreshRetail Demand Forecasting", detail: "Built lag features (Lag-1, Lag-7), rolling averages (7d, 30d), calendar features (day of week, weekend flag, holiday), stock fraction, and hourly sales stats. These features drove the XGBoost MAPE down to 3.6%.", links: [{ label: "GitHub", href: "https://github.com/abhistac/freshretail-demand-forecasting" }] },
+      { title: "Virginia Mason: Readmission Prediction", detail: "Computed Charlson Comorbidity Index, prior admission count, days since last admission, medication count, polypharmacy flag, and hospital utilisation score from raw clinical data.", links: [] }
+    ],
+    experience: []
+  },
+  "ModelEvaluation": {
+    cat: "ML & Data Science",
+    projects: [
+      { title: "Fraud Detection System", detail: "Evaluated 5 models on ROC-AUC, precision, recall, F1. Business impact analysis with net benefit curve — chose threshold at 45% not 50% based on cost-benefit optimisation.", links: [{ label: "GitHub", href: "https://github.com/abhistac/fraud-detection-system" }] },
+      { title: "Virginia Mason: Readmission Prediction", detail: "Stratified 5-fold CV, temporal holdout validation on most recent 3 months, SHAP for interpretability, clinical plausibility review with healthcare advisor.", links: [] },
+      { title: "Cyber Sentinel", detail: "Tracked precision, recall, F1 per NIST control. The Reflexion pass consistently improved F1 by ~8% over single-pass classification on the test log set.", links: [{ label: "GitHub", href: "https://github.com/abhistac/cyber-sentinel" }] }
+    ],
+    experience: []
+  },
+  "Kafka": {
+    cat: "Data Engineering",
+    projects: [
+      { title: "MySQL → PostgreSQL CDC Pipeline", detail: "Kafka is the backbone — Debezium publishes MySQL binlog events to Kafka topics, Kafka Connect JDBC Sink consumes them into PostgreSQL. Handles schema evolution and delete events.", links: [{ label: "GitHub", href: "https://github.com/abhistac/mysql-to-postgres-cdc" }] }
+    ],
+    experience: [
+      { title: "Saayam For All — AI Engineer", detail: "AWS MSK (Managed Streaming for Kafka) used to stream real-time beneficiary interaction events. Lambda functions act as Kafka consumers, processing events and loading to S3.", links: [] },
+      { title: "LTIMindtree — Cloud & Data Engineer", detail: "Kafka used in the telemetry streaming layer alongside Azure Data Explorer for real-time VM and application performance data ingestion.", links: [] }
+    ]
+  },
+  "Debezium": {
+    cat: "Data Engineering",
+    projects: [
+      { title: "MySQL → PostgreSQL CDC Pipeline", detail: "Debezium MySQL Source Connector reads the MySQL binlog and emits structured CDC events (before/after images) to Kafka. Configured for schema evolution with auto.evolve=true.", links: [{ label: "GitHub", href: "https://github.com/abhistac/mysql-to-postgres-cdc" }] }
+    ],
+    experience: []
+  },
+  "AWSGlue": {
+    cat: "Data Engineering",
+    projects: [
+      { title: "Puerto Rico Vulnerability Index", detail: "AWS Glue ETL jobs cleaned FEMA, NOAA, and Census data — standardised CRS, handled missing values, and performed geospatial joins before loading to the silver layer in S3.", links: [] }
+    ],
+    experience: [
+      { title: "Saayam For All — AI Engineer", detail: "AWS Glue ETL jobs transform raw beneficiary data into analytics-ready datasets. Glue crawlers auto-catalog S3 data. Athena used for SQL-based ad-hoc analysis.", links: [] }
+    ]
+  },
+  "AzureADF": {
+    cat: "Data Engineering",
+    projects: [],
+    experience: [
+      { title: "LTIMindtree — Cloud & Data Engineer", detail: "Built ADF pipelines to migrate 5TB+ of enterprise telemetry from on-premises to Azure Data Explorer. Implemented incremental load with watermark tables — no full reloads, minimal downtime.", links: [] }
+    ]
+  },
+  "Spark": {
+    cat: "Data Engineering",
+    projects: [],
+    experience: [
+      { title: "LTIMindtree — Cloud & Data Engineer", detail: "Used Spark-based processing via Azure Databricks for batch transformation of large telemetry datasets before loading to ADX.", links: [] },
+      { title: "Saayam For All — AI Engineer", detail: "Spark referenced in pipeline design for scale-out processing of beneficiary records when Lambda concurrency limits were a concern.", links: [] }
+    ]
+  },
+  "DuckDB": {
+    cat: "Data Engineering",
+    projects: [
+      { title: "Bike Sales Analytics", detail: "DuckDB used as the in-process OLAP engine for analytical queries on 100K+ sales records. Faster than Pandas groupby for multi-dimensional aggregations. No server setup needed.", links: [{ label: "GitHub", href: "https://github.com/abhistac/bike_sales_analysis" }, { label: "Live app", href: "https://bikesalesanalysis-hrmyw3wkmeph4srfmctu7m.streamlit.app/" }] }
+    ],
+    experience: []
+  },
+  "ETL": {
+    cat: "Data Engineering",
+    projects: [
+      { title: "Bike Sales Analytics", detail: "Python ETL script cleans raw CSV, calculates net revenue (gross minus payment fees), deduplicates records, and loads to DuckDB. Runs on every push via GitHub Actions.", links: [{ label: "GitHub", href: "https://github.com/abhistac/bike_sales_analysis" }] },
+      { title: "Virginia Mason: Readmission Prediction", detail: "Python ETL pipeline integrating patient demographics, clinical records, and operational data from multiple CSV and SQL sources. Reduced processing time from 2 days to 2 hours.", links: [] },
+      { title: "MySQL → PostgreSQL CDC Pipeline", detail: "Debezium + Kafka Connect forms the ETL backbone — extract from MySQL binlog, transform to structured events, load to PostgreSQL automatically.", links: [{ label: "GitHub", href: "https://github.com/abhistac/mysql-to-postgres-cdc" }] }
+    ],
+    experience: [
+      { title: "LTIMindtree — Cloud & Data Engineer", detail: "ADF pipelines with incremental load patterns — watermark tables track last processed timestamp, Copy Activity extracts only new/changed records.", links: [] },
+      { title: "Susheetronics — Data Analyst", detail: "Python scripts scheduled via cron to extract POS CSV exports, calculate revenue and margin, and load to MySQL. Cut daily data entry from 4 hours to 30 minutes.", links: [] }
+    ]
+  },
+  "AWSLambda": {
+    cat: "Cloud & DevOps",
+    projects: [
+      { title: "Cyber Sentinel", detail: "Both agents deployed as AWS Lambda functions. Agent 1 triggered by S3 log uploads via EventBridge. Agent 2 triggered by Agent 1 output. Mock mode available for demo without AWS.", links: [{ label: "GitHub", href: "https://github.com/abhistac/cyber-sentinel" }] },
+      { title: "Puerto Rico Vulnerability Index", detail: "Lambda functions automate data refresh and model scoring. EC2 hosts the Dash application with auto-scaling.", links: [] }
+    ],
+    experience: [
+      { title: "Saayam For All — AI Engineer", detail: "4+ Lambda functions: API Gateway triggers for data ingestion, Kafka consumer processors, ML inference endpoints, and scheduled analytics jobs. 99.9% uptime, 50% latency reduction via Redis caching.", links: [] }
+    ]
+  },
+  "AzureADX": {
+    cat: "Cloud & DevOps",
+    projects: [],
+    experience: [
+      { title: "LTIMindtree — Cloud & Data Engineer", detail: "Azure Data Explorer received 5TB+ of migrated telemetry. KQL queries with materialized views and partitioning reduced query latency from 5-10 min to 1-2 min. Power BI connected via DirectQuery.", links: [] }
+    ]
+  },
+  "Docker": {
+    cat: "Cloud & DevOps",
+    projects: [
+      { title: "MySQL → PostgreSQL CDC Pipeline", detail: "Full 6-service stack (MySQL, Zookeeper, Kafka, Kafka Connect, PostgreSQL, Kafka-UI) orchestrated in Docker Compose. Single command to bring up the entire pipeline.", links: [{ label: "GitHub", href: "https://github.com/abhistac/mysql-to-postgres-cdc" }] },
+      { title: "Cyber Sentinel", detail: "LLM agents containerised in Docker for consistent deployment. Designed for AWS Lambda container image deployment in production.", links: [{ label: "GitHub", href: "https://github.com/abhistac/cyber-sentinel" }] },
+      { title: "NLP: Condescending Language Detector", detail: "FastAPI + BERT model containerised and deployed on AWS Lambda. Model quantisation (FP32 → INT8) inside the container reduced inference latency by 75%.", links: [] }
+    ],
+    experience: []
+  },
+  "FastAPI": {
+    cat: "Cloud & DevOps",
+    projects: [
+      { title: "NLP: Condescending Language Detector", detail: "FastAPI serves three endpoints: /predict (tone classification + confidence), /explain (SHAP word-level breakdown), /batch (multiple texts). Deployed as serverless Lambda function.", links: [] }
+    ],
+    experience: []
+  },
+  "GitHubActions": {
+    cat: "Cloud & DevOps",
+    projects: [
+      { title: "Bike Sales Analytics", detail: "CI pipeline runs on every push: installs dependencies, runs ETL, executes pytest suite. Keeps the live Streamlit app always in a deployable state.", links: [{ label: "GitHub", href: "https://github.com/abhistac/bike_sales_analysis" }] }
+    ],
+    experience: []
+  },
+  "pytest": {
+    cat: "Cloud & DevOps",
+    projects: [
+      { title: "Cyber Sentinel", detail: "12 unit tests covering both agents. All LLM calls mocked with unittest.mock — tests run in CI without an API key. Tests cover: violation detection, Reflexion call count, batch error handling, Pydantic schema validation.", links: [{ label: "GitHub", href: "https://github.com/abhistac/cyber-sentinel" }] },
+      { title: "Agentic Ticket Manager", detail: "13 unit tests across all three agents. Mocked LLM calls, environment variable isolation for credential tests, batch processing edge cases, Pydantic validation.", links: [{ label: "GitHub", href: "https://github.com/abhistac/agentic-ticket-manager" }] }
+    ],
+    experience: []
+  },
+  "DevSecOps": {
+    cat: "Cloud & DevOps",
+    projects: [],
+    experience: [
+      { title: "Saayam For All — AI Engineer", detail: "IAM least-privilege roles, S3 SSE-KMS encryption, VPC with public/private subnets, CloudWatch alarms for Lambda errors and Kafka lag, AWS Config for compliance drift detection.", links: [] }
+    ]
+  },
+  "Python": {
+    cat: "Languages",
+    projects: [
+      { title: "Cyber Sentinel", detail: "Pure Python — LangChain agents, Pydantic models, Streamlit UI, pytest suite. Core stack: langchain-openai, pydantic v2, python-dotenv.", links: [{ label: "GitHub", href: "https://github.com/abhistac/cyber-sentinel" }] },
+      { title: "Agentic Ticket Manager", detail: "Three Python agent modules, SMTP/Slack notifier, SLA policy engine, Streamlit UI, 13 tests.", links: [{ label: "GitHub", href: "https://github.com/abhistac/agentic-ticket-manager" }] },
+      { title: "Fraud Detection System", detail: "End-to-end ML pipeline: data loading, SMOTE, model training, threshold tuning, Plotly visualisations.", links: [{ label: "GitHub", href: "https://github.com/abhistac/fraud-detection-system" }] },
+      { title: "FreshRetail Demand Forecasting", detail: "Feature engineering, XGBoost training, Prophet modelling, real-time simulation, 14-day forecasting.", links: [{ label: "GitHub", href: "https://github.com/abhistac/freshretail-demand-forecasting" }] },
+      { title: "Bike Sales Analytics", detail: "ETL pipeline (enrich.py), DuckDB queries, Streamlit dashboard, pre-commit hooks, pytest.", links: [{ label: "GitHub", href: "https://github.com/abhistac/bike_sales_analysis" }] }
+    ],
+    experience: [
+      { title: "Saayam For All — AI Engineer", detail: "Python microservices on Lambda. Pandas, NumPy, Scikit-learn, TensorFlow, Plotly, Dash.", links: [] },
+      { title: "LTIMindtree — Cloud & Data Engineer", detail: "Python for ADF data flows, pre-migration validation scripts, predictive model integration.", links: [] },
+      { title: "Susheetronics — Data Analyst", detail: "Python ETL scripts (Pandas, mysql-connector), Excel automation via openpyxl.", links: [] }
+    ]
+  },
+  "SQL": {
+    cat: "Languages",
+    projects: [
+      { title: "Bike Sales Analytics", detail: "DuckDB SQL for multi-dimensional aggregations — net revenue by payment method, product profitability, warehouse performance comparisons.", links: [{ label: "GitHub", href: "https://github.com/abhistac/bike_sales_analysis" }] },
+      { title: "MySQL → PostgreSQL CDC Pipeline", detail: "MySQL DDL and DML for schema setup, demo data insertion, schema evolution (ALTER TABLE). PostgreSQL queries to verify replication.", links: [{ label: "GitHub", href: "https://github.com/abhistac/mysql-to-postgres-cdc" }] },
+      { title: "Virginia Mason: Readmission Prediction", detail: "SQL joins across patient demographics, clinical records, and operational tables. SQLAlchemy for Python-to-database ORM.", links: [] }
+    ],
+    experience: [
+      { title: "Susheetronics — Data Analyst", detail: "Designed normalised MySQL schema (3NF), supplier performance KPI queries, inventory reorder calculations.", links: [] },
+      { title: "Saayam For All — AI Engineer", detail: "Athena SQL queries against S3 Parquet data. QuickSight calculated fields for KPIs.", links: [] }
+    ]
+  },
+  "KQL": {
+    cat: "Languages",
+    projects: [],
+    experience: [
+      { title: "LTIMindtree — Cloud & Data Engineer", detail: "KQL queries in Azure Data Explorer for anomaly detection using series_decompose_anomalies, time-series aggregations, and materialized views. Reduced query latency 30% through partitioning and indexing.", links: [] }
+    ]
+  },
+  "PowerShell": {
+    cat: "Languages",
+    projects: [],
+    experience: [
+      { title: "LTIMindtree — Cloud & Data Engineer", detail: "PowerShell Automation Runbooks for VM scaling (Get-AzMetric, scale-up if CPU > 80%), patching schedules, and audit logging. Reduced manual VM management by 60% across 1,000+ VMs.", links: [] }
+    ]
+  },
+  "R": {
+    cat: "Languages",
+    projects: [],
+    experience: [
+      { title: "George Mason University — Graduate Studies", detail: "R used in statistical modelling coursework — regression analysis, hypothesis testing, data visualisation with ggplot2.", links: [] }
+    ]
+  },
+  "Bash": {
+    cat: "Languages",
+    projects: [
+      { title: "MySQL → PostgreSQL CDC Pipeline", detail: "Bash scripts to register Debezium source and JDBC sink connectors via Kafka Connect REST API. Makefile wraps common operations (up, down, register, logs, psql).", links: [{ label: "GitHub", href: "https://github.com/abhistac/mysql-to-postgres-cdc" }] }
+    ],
+    experience: []
+  },
+  "PowerBI": {
+    cat: "Visualization & BI",
+    projects: [
+      { title: "Virginia Mason: Readmission Prediction", detail: "Power BI dashboards with DirectQuery to SQL database. DAX measures for readmission rate, avg length of stay, risk scores. Drill-through from department to patient level. Enabled care teams to prioritise high-risk patients 50% faster.", links: [] },
+      { title: "Puerto Rico Vulnerability Index", detail: "Power BI reports showing top 10 vulnerable municipalities, indicator breakdowns, and scenario comparisons (baseline vs 1m/2m sea level rise).", links: [] }
+    ],
+    experience: [
+      { title: "LTIMindtree — Cloud & Data Engineer", detail: "Power BI dashboards with DirectQuery to Azure Data Explorer. Real-time VM health, CPU/memory trends, anomaly alerts, and failure predictions for 200+ stakeholders.", links: [] }
+    ]
+  },
+  "Tableau": {
+    cat: "Visualization & BI",
+    projects: [
+      { title: "Fraud Detection System", detail: "Tableau Public dashboard showing transaction distribution (log scale), model performance comparison across 5 algorithms, business impact analysis, and confusion matrix visualisations.", links: [{ label: "Dashboard", href: "https://public.tableau.com/views/Book1_17558033052330/Dashboard1" }] },
+      { title: "FreshRetail Demand Forecasting", detail: "Tableau Public dashboard with interactive model comparison, store-level 14-day forecast explorer, actual vs predicted validation, and RMSE/MAPE metrics across models.", links: [{ label: "Dashboard", href: "https://public.tableau.com/views/Book1_17558033052330/RetailDemandForecastingExplorer" }] }
+    ],
+    experience: []
+  },
+  "Plotly": {
+    cat: "Visualization & BI",
+    projects: [
+      { title: "Puerto Rico Vulnerability Index", detail: "Plotly Dash web application with interactive maps showing municipality vulnerability scores, time-series projected trends, scenario filters, and hover tooltips.", links: [] },
+      { title: "Bike Sales Analytics", detail: "Plotly charts in Streamlit — revenue trends, product profitability bars, warehouse comparisons, time-series with date range filters.", links: [{ label: "Live app", href: "https://bikesalesanalysis-hrmyw3wkmeph4srfmctu7m.streamlit.app/" }] }
+    ],
+    experience: [
+      { title: "Saayam For All — AI Engineer", detail: "Plotly Dash dashboards for HR analytics in the condescending language detection project — trend charts, top flagged phrases, department-level compliance view.", links: [] }
+    ]
+  },
+  "QuickSight": {
+    cat: "Visualization & BI",
+    projects: [],
+    experience: [
+      { title: "Saayam For All — AI Engineer", detail: "AWS QuickSight dashboards connected to Athena over S3. Real-time KPIs: program enrollment rates, beneficiary retention, resource utilisation heatmaps, demographic breakdowns. Reduced reporting time from 3 days to near real-time.", links: [] }
+    ]
+  },
+  "Streamlit": {
+    cat: "Visualization & BI",
+    projects: [
+      { title: "Cyber Sentinel", detail: "Streamlit UI lets users paste logs and get NIST compliance results instantly. Load sample logs button, reflexion toggle, Jira ticket generation toggle, severity-filtered results, JSON download.", links: [{ label: "GitHub", href: "https://github.com/abhistac/cyber-sentinel" }] },
+      { title: "Agentic Ticket Manager", detail: "Streamlit UI with two modes: single ticket (live classification + SLA eval) and batch mode (all 8 sample tickets through the full 3-agent pipeline).", links: [{ label: "GitHub", href: "https://github.com/abhistac/agentic-ticket-manager" }] },
+      { title: "Bike Sales Analytics", detail: "Live Streamlit app deployed on Streamlit Cloud. KPI strip, revenue trends, product analysis, warehouse comparison, filterable data table with CSV export.", links: [{ label: "Live app", href: "https://bikesalesanalysis-hrmyw3wkmeph4srfmctu7m.streamlit.app/" }] }
+    ],
+    experience: []
+  },
+  "Matplotlib": {
+    cat: "Visualization & BI",
+    projects: [
+      { title: "Virginia Mason: Readmission Prediction", detail: "ROC curves comparing all models, feature importance bar charts, SHAP force plots and partial dependence plots for clinical interpretability.", links: [] },
+      { title: "FreshRetail Demand Forecasting", detail: "Actual vs predicted validation charts, residual plots, seasonal decomposition visualisations during EDA.", links: [{ label: "GitHub", href: "https://github.com/abhistac/freshretail-demand-forecasting" }] }
+    ],
+    experience: []
+  }
+};
+
+// ── Panel logic ──
+const overlay = document.getElementById('panelOverlay');
+const panel   = document.getElementById('skillPanel');
+const nameEl  = document.getElementById('panelSkillName');
+const catEl   = document.getElementById('panelSkillCat');
+const bodyEl  = document.getElementById('panelBody');
+
+function buildCard(item, type) {
+  const links = (item.links||[]).map(l=>
+    `<a href="${l.href}" target="_blank" class="panel-card-link">${l.label} &#8599;</a>`
+  ).join('');
+  return `<div class="panel-card">
+    <div class="panel-card-type">${type}</div>
+    <div class="panel-card-title">${item.title}</div>
+    <div class="panel-card-detail">${item.detail}</div>
+    ${links ? `<div class="panel-ev-links">${links}</div>` : ''}
+  </div>`;
+}
+
+function openPanel(skillKey, displayName) {
+  const data = EVIDENCE[skillKey];
+  if (!data) return;
+
+  nameEl.textContent = displayName;
+  catEl.textContent  = data.cat;
+
+  let html = '';
+
+  if (data.projects && data.projects.length) {
+    html += `<div><div class="panel-group-label">Projects</div>${data.projects.map(p=>buildCard(p,'Project')).join('')}</div>`;
+  }
+  if (data.experience && data.experience.length) {
+    html += `<div><div class="panel-group-label">Work experience</div>${data.experience.map(e=>buildCard(e,'Experience')).join('')}</div>`;
+  }
+  if (!html) {
+    html = `<div style="color:var(--muted2);font-size:.78rem;padding:1rem 0;">No linked evidence yet.</div>`;
+  }
+
+  bodyEl.innerHTML = html;
+  overlay.classList.add('open');
+  panel.classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  // Mark active skill
+  document.querySelectorAll('.skill-item').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll(`[data-skill="${skillKey}"]`).forEach(el => el.classList.add('active'));
+}
+
+function closePanel() {
+  overlay.classList.remove('open');
+  panel.classList.remove('open');
+  document.body.style.overflow = '';
+  document.querySelectorAll('.skill-item').forEach(el => el.classList.remove('active'));
+}
+
+// Click skill items
+document.querySelectorAll('.skill-item[data-skill]').forEach(el => {
+  el.addEventListener('click', () => {
+    const key  = el.dataset.skill;
+    const name = el.textContent.trim();
+    if (panel.classList.contains('open') && nameEl.textContent === name) {
+      closePanel();
+    } else {
+      openPanel(key, name);
+    }
+  });
+});
+
+// Close on overlay click or button
+overlay.addEventListener('click', closePanel);
+document.getElementById('panelClose').addEventListener('click', closePanel);
+
+// Close on Escape key
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
 </script>
 </body>
 </html>
