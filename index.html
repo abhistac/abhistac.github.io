@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abhista Atchutuni — AI & Data Engineer</title>
+<meta name="description" content="AI and Data Engineer. I build LLM agents, data pipelines, and ML systems that work at scale.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#111010;--bg2:#181717;--bg3:#1f1e1e;--bg4:#262525;--border:#2a2828;--border2:#383535;--text:#e8e4e0;--muted:#7a7470;--muted2:#5a5552;--amber:#f5a623;--amber2:#ffc85c;--red:#e05a5a;--teal:#4ecdc4;--blue:#6ba3d6;--mono:'JetBrains Mono',monospace;--serif:'Instrument Serif',serif;--display:'Bebas Neue',sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:14px;line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);pointer-events:none;z-index:1000}
+nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:52px;background:rgba(17,16,16,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-id{display:flex;align-items:center;gap:.75rem;font-size:.7rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.nav-id-dot{width:6px;height:6px;border-radius:50%;background:var(--amber);animation:breathe 3s ease-in-out infinite}
+@keyframes breathe{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.nav-links{display:flex;gap:0;list-style:none}
+.nav-links a{display:block;padding:0 1.25rem;height:52px;line-height:52px;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-left:1px solid var(--border);transition:color .15s,background .15s}
+.nav-links a:hover{color:var(--amber);background:rgba(245,166,35,.04)}
+.nav-cta{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--bg);background:var(--amber);padding:.4rem 1.1rem;text-decoration:none;font-weight:600;transition:background .15s}
+.nav-cta:hover{background:var(--amber2)}
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:52px}
+.hero-left{padding:5rem 4rem;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--border);position:relative}
+.hero-left::after{content:'';position:absolute;top:0;bottom:0;left:0;width:3px;background:var(--amber)}
+.hero-eyebrow{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:2rem;display:flex;align-items:center;gap:.75rem}
+.hero-eyebrow::before{content:'//';color:var(--muted2)}
+h1{font-family:var(--display);font-size:clamp(4rem,8vw,8rem);line-height:.92;letter-spacing:.01em;color:var(--text);margin-bottom:.5rem}
+h1 .name-dim{color:var(--muted)}
+h1 .name-accent{color:var(--amber)}
+.hero-title-eng{font-family:var(--serif);font-style:italic;font-size:clamp(1.4rem,2.5vw,2rem);color:var(--muted);margin-bottom:2.5rem}
+.hero-story{font-size:.82rem;color:var(--muted);line-height:1.9;max-width:440px;margin-bottom:3rem;border-left:2px solid var(--border2);padding-left:1.25rem}
+.hero-story strong{color:var(--text)}
+.hero-actions{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.25rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .15s;border:none;cursor:pointer}
+.btn-amber{background:var(--amber);color:var(--bg);font-weight:600}
+.btn-amber:hover{background:var(--amber2)}
+.btn-outline{background:transparent;color:var(--muted);border:1px solid var(--border2)}
+.btn-outline:hover{color:var(--text);border-color:var(--muted2)}
+.hero-right{padding:5rem 3rem;display:flex;flex-direction:column;justify-content:center;background:var(--bg2);position:relative;overflow:hidden}
+.hero-right::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:32px 32px;opacity:.5}
+.pipeline-label{position:relative;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted2);margin-bottom:2.5rem}
+.pipeline{position:relative;display:flex;flex-direction:column}
+.pipe-node{position:relative;display:flex;align-items:stretch;opacity:0;transform:translateX(-20px);animation:slideIn .5s ease forwards}
+.pipe-node:nth-child(1){animation-delay:.1s}.pipe-node:nth-child(2){animation-delay:.25s}.pipe-node:nth-child(3){animation-delay:.4s}.pipe-node:nth-child(4){animation-delay:.55s}.pipe-node:nth-child(5){animation-delay:.7s}.pipe-node:nth-child(6){animation-delay:.85s}
+@keyframes slideIn{to{opacity:1;transform:translateX(0)}}
+.pipe-connector{display:flex;flex-direction:column;align-items:center;width:28px;flex-shrink:0}
+.pipe-dot{width:10px;height:10px;border-radius:50%;border:2px solid var(--muted2);background:var(--bg2);flex-shrink:0;z-index:2;margin-top:16px}
+.pipe-dot.active{border-color:var(--amber);background:var(--amber);box-shadow:0 0 12px rgba(245,166,35,.4)}
+.pipe-line{flex:1;width:1px;background:var(--border2);margin:0 auto}
+.pipe-card{flex:1;background:var(--bg3);border:1px solid var(--border);border-left:2px solid var(--border2);padding:.9rem 1.1rem;margin:6px 0;transition:border-color .2s,background .2s;position:relative}
+.pipe-card:hover{background:var(--bg4);border-left-color:var(--amber)}
+.pipe-card.featured{border-left-color:var(--amber);background:rgba(245,166,35,.04)}
+.pipe-year{font-size:.6rem;color:var(--muted2);letter-spacing:.1em;margin-bottom:.2rem}
+.pipe-title{font-size:.78rem;color:var(--text);font-weight:500;margin-bottom:.15rem}
+.pipe-sub{font-size:.65rem;color:var(--muted)}
+.pipe-tag{position:absolute;top:.75rem;right:.75rem;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;padding:.15rem .45rem;border:1px solid}
+.tag-analyst{color:var(--blue);border-color:var(--blue);background:rgba(107,163,214,.06)}
+.tag-engineer{color:var(--teal);border-color:var(--teal);background:rgba(78,205,196,.06)}
+.tag-ai{color:var(--amber);border-color:var(--amber);background:rgba(245,166,35,.06)}
+section{position:relative}
+.container{max-width:1200px;margin:0 auto;padding:0 4rem}
+.section-header{display:flex;align-items:baseline;gap:1.5rem;margin-bottom:3.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.section-num{font-family:var(--display);font-size:5rem;line-height:1;color:var(--border2);letter-spacing:.02em;flex-shrink:0}
+.section-label{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:.2rem}
+h2{font-family:var(--display);font-size:clamp(2.5rem,4vw,3.8rem);line-height:1;letter-spacing:.02em;color:var(--text)}
+.section-desc{margin-top:.5rem;font-size:.78rem;color:var(--muted);max-width:480px;line-height:1.8}
+#projects{padding:6rem 0;background:var(--bg)}
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
+.proj-card{background:var(--bg);padding:2.2rem;position:relative;transition:background .2s;overflow:hidden}
+.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--card-color,var(--border2));transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+.proj-card:hover{background:var(--bg2)}
+.proj-card:hover::before{transform:scaleX(1)}
+.proj-card.span2{grid-column:span 2}
+.proj-status{display:flex;align-items:center;gap:.5rem;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted2);margin-bottom:1.25rem}
+.status-dot{width:5px;height:5px;border-radius:50%;background:var(--muted2)}
+.status-dot.live{background:#4ade80;box-shadow:0 0 8px rgba(74,222,128,.5);animation:pulse-dot 2s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{box-shadow:0 0 8px rgba(74,222,128,.5)}50%{box-shadow:0 0 16px rgba(74,222,128,.8)}}
+.proj-num{font-family:var(--display);font-size:4rem;line-height:1;color:var(--border2);position:absolute;top:1.5rem;right:2rem;letter-spacing:.02em;transition:color .2s}
+.proj-card:hover .proj-num{color:var(--border)}
+.proj-name{font-family:var(--display);font-size:clamp(1.6rem,2.5vw,2.2rem);line-height:1;letter-spacing:.02em;color:var(--text);margin-bottom:.6rem;max-width:70%}
+.proj-tagline{font-family:var(--serif);font-style:italic;font-size:.95rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
+.proj-desc{font-size:.75rem;color:var(--muted);line-height:1.85;margin-bottom:1.5rem;max-width:520px}
+.proj-metrics{display:flex;gap:2rem;margin-bottom:1.5rem;padding:1rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.metric-val{font-family:var(--display);font-size:2rem;line-height:1;color:var(--text);letter-spacing:.02em}
+.metric-val span{font-size:1rem;color:var(--muted)}
+.metric-label{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2);margin-top:.2rem}
+.proj-stack{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.5rem}
+.stack-tag{font-size:.62rem;letter-spacing:.08em;color:var(--muted);background:var(--bg3);border:1px solid var(--border);padding:.2rem .55rem;text-transform:uppercase}
+.proj-links{display:flex;gap:.5rem}
+.proj-link{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;border:1px solid var(--border2);padding:.4rem .9rem;display:flex;align-items:center;gap:.4rem;transition:all .15s}
+.proj-link:hover{color:var(--amber);border-color:var(--amber)}
+.proj-link.primary{background:var(--amber);color:var(--bg);border-color:var(--amber);font-weight:600}
+.proj-link.primary:hover{background:var(--amber2);border-color:var(--amber2);color:var(--bg)}
+#experience{padding:6rem 0;background:var(--bg2)}
+.exp-list{display:flex;flex-direction:column}
+.exp-item{display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid var(--border);padding:2.2rem 0}
+.exp-item:first-child{border-top:1px solid var(--border)}
+.exp-meta{padding-right:2.5rem}
+.exp-period{font-size:.65rem;color:var(--amber);letter-spacing:.08em;margin-bottom:.3rem;font-weight:500}
+.exp-org{font-size:.7rem;color:var(--muted);line-height:1.5}
+.exp-role{font-family:var(--display);font-size:1.8rem;letter-spacing:.03em;color:var(--text);line-height:1;margin-bottom:.75rem}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.exp-bullets li{font-size:.75rem;color:var(--muted);padding-left:1.25rem;position:relative;line-height:1.8}
+.exp-bullets li::before{content:'→';position:absolute;left:0;color:var(--amber);font-size:.7rem}
+.exp-bullets li strong{color:var(--text);font-weight:500}
+#skills{padding:6rem 0;background:var(--bg)}
+.skills-table{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;border:1px solid var(--border);background:var(--border)}
+.skill-cell{background:var(--bg);padding:1.75rem;transition:background .15s}
+.skill-cell:hover{background:var(--bg2)}
+.skill-cell-label{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.skill-cell-label::before{content:'';display:block;width:16px;height:1px;background:var(--amber)}
+.skill-items{display:flex;flex-direction:column;gap:.35rem}
+.skill-item{font-size:.72rem;color:var(--muted);display:flex;align-items:center;gap:.5rem}
+.skill-item::before{content:'';width:3px;height:3px;background:var(--muted2);border-radius:50%;flex-shrink:0}
+#github{padding:6rem 0;background:var(--bg2)}
+.gh-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+.gh-card{background:var(--bg2);padding:1.75rem;transition:background .2s;text-decoration:none;display:flex;flex-direction:column;gap:.75rem;position:relative}
+.gh-card:hover{background:var(--bg3)}
+.gh-card-lang{width:8px;height:8px;border-radius:50%;position:absolute;top:1.75rem;right:1.75rem}
+.lang-python{background:#3572A5}.lang-jupyter{background:#DA5B0B}.lang-docker{background:#384d54}
+.gh-card-name{font-size:.78rem;color:var(--text);font-weight:500;padding-right:1.5rem}
+.gh-card-desc{font-size:.68rem;color:var(--muted);line-height:1.7}
+.gh-card-footer{display:flex;align-items:center;gap:1rem;margin-top:auto;padding-top:.75rem;border-top:1px solid var(--border)}
+.gh-card-lang-name{font-size:.6rem;color:var(--muted2);letter-spacing:.08em}
+.gh-card-arrow{margin-left:auto;color:var(--muted2);font-size:.75rem;transition:color .15s,transform .15s}
+.gh-card:hover .gh-card-arrow{color:var(--amber);transform:translateX(3px)}
+#contact{padding:6rem 0;background:var(--bg);border-top:1px solid var(--border)}
+.contact-split{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border)}
+.contact-left{padding:3.5rem;border-right:1px solid var(--border)}
+.contact-heading{font-family:var(--display);font-size:clamp(3rem,5vw,5.5rem);line-height:.95;letter-spacing:.02em;color:var(--text);margin-bottom:1.5rem}
+.contact-heading span{color:var(--amber)}
+.contact-body{font-size:.78rem;color:var(--muted);line-height:1.9;margin-bottom:2.5rem;max-width:380px}
+.contact-links-stack{display:flex;flex-direction:column;gap:.5rem}
+.contact-link{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.1rem;border:1px solid var(--border);text-decoration:none;transition:all .15s;color:var(--muted);font-size:.72rem;letter-spacing:.08em}
+.contact-link:hover{border-color:var(--amber);color:var(--amber);background:rgba(245,166,35,.04)}
+.contact-right{padding:3.5rem;background:var(--bg2);display:flex;flex-direction:column;justify-content:center}
+.contact-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:2rem}
+.contact-stat{background:var(--bg2);padding:1.5rem}
+.contact-stat-val{font-family:var(--display);font-size:2.5rem;line-height:1;color:var(--text);letter-spacing:.02em;margin-bottom:.3rem}
+.contact-stat-label{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted2)}
+.contact-note{font-size:.7rem;color:var(--muted2);line-height:1.8;border-left:2px solid var(--border2);padding-left:1rem}
+footer{padding:1.25rem 4rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2)}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:960px){#hero{grid-template-columns:1fr}.hero-right{display:none}.projects-grid{grid-template-columns:1fr}.proj-card.span2{grid-column:span 1}.exp-item{grid-template-columns:1fr;gap:.5rem}.skills-table{grid-template-columns:1fr 1fr}.gh-grid{grid-template-columns:1fr 1fr}.contact-split{grid-template-columns:1fr}.contact-right{display:none}nav{padding:0 1.5rem}.container{padding:0 1.5rem}.hero-left{padding:3rem 2rem}}
+@media(max-width:600px){.skills-table{grid-template-columns:1fr}.gh-grid{grid-template-columns:1fr}.nav-links{display:none}h1{font-size:3.5rem}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-id"><div class="nav-id-dot"></div>abhistac // AI &amp; Data Engineer</div>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#github">GitHub</a></li>
+  </ul>
+  <a href="mailto:abhistaca@gmail.com" class="nav-cta">Hire me</a>
+</nav>
+
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Available for full-time roles &middot; San Jose, CA</div>
+    <h1>ABHISTA<br><span class="name-dim">ATCHU</span><span class="name-accent">TUNI</span></h1>
+    <div class="hero-title-eng">AI &amp; Data Engineer</div>
+    <p class="hero-story">Started as a <strong>mechanical engineer</strong>. Taught myself data analysis. Worked my way through <strong>data pipelines and ML systems</strong> at LTIMindtree and Saayam For All. Now building <strong>LLM agents and agentic AI workflows</strong> that run in production.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-amber">View projects</a>
+      <a href="https://linkedin.com/in/abhistac" target="_blank" class="btn btn-outline">LinkedIn &#8599;</a>
+      <a href="https://github.com/abhistac" target="_blank" class="btn btn-outline">GitHub &#8599;</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="pipeline-label">Career pipeline</div>
+    <div class="pipeline">
+      <div class="pipe-node"><div class="pipe-connector"><div class="pipe-dot"></div><div class="pipe-line"></div></div><div class="pipe-card"><div class="pipe-year">2021 &middot; Susheetronics</div><div class="pipe-title">Bike Sales + Retail Analytics</div><div class="pipe-sub">MySQL, Python, Excel dashboards</div><div class="pipe-tag tag-analyst">Analyst</div></div></div>
+      <div class="pipe-node"><div class="pipe-connector"><div class="pipe-dot"></div><div class="pipe-line"></div></div><div class="pipe-card"><div class="pipe-year">2022 &middot; Personal project</div><div class="pipe-title">Retail Demand Forecasting</div><div class="pipe-sub">XGBoost, Prophet, 4.5M+ records</div><div class="pipe-tag tag-analyst">Analyst</div></div></div>
+      <div class="pipe-node"><div class="pipe-connector"><div class="pipe-dot"></div><div class="pipe-line"></div></div><div class="pipe-card"><div class="pipe-year">2022&ndash;23 &middot; LTIMindtree</div><div class="pipe-title">Enterprise Telemetry Pipeline</div><div class="pipe-sub">Azure, Kafka, 5TB+ migration</div><div class="pipe-tag tag-engineer">Engineer</div></div></div>
+      <div class="pipe-node"><div class="pipe-connector"><div class="pipe-dot"></div><div class="pipe-line"></div></div><div class="pipe-card"><div class="pipe-year">2024 &middot; Personal project</div><div class="pipe-title">MySQL &rarr; Postgres CDC</div><div class="pipe-sub">Debezium, Kafka Connect, Docker</div><div class="pipe-tag tag-engineer">Engineer</div></div></div>
+      <div class="pipe-node"><div class="pipe-connector"><div class="pipe-dot"></div><div class="pipe-line"></div></div><div class="pipe-card featured"><div class="pipe-year">2025 &middot; Personal projects</div><div class="pipe-title">Cyber Sentinel + Ticket Manager</div><div class="pipe-sub">GPT-4o, LangChain, AWS Lambda</div><div class="pipe-tag tag-ai">AI Eng</div></div></div>
+      <div class="pipe-node"><div class="pipe-connector"><div class="pipe-dot active"></div></div><div class="pipe-card featured"><div class="pipe-year">2025&ndash;Present &middot; Saayam For All</div><div class="pipe-title">AI-Powered Community Platform</div><div class="pipe-sub">AWS MSK, ML inference, production</div><div class="pipe-tag tag-ai">AI Eng</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-num">02</div>
+      <div class="section-title-block">
+        <div class="section-label">Selected work</div>
+        <h2>PROJECTS</h2>
+        <p class="section-desc">Six projects across three skill levels. Each one built, tested, and shipped.</p>
+      </div>
+    </div>
+    <div class="projects-grid">
+
+      <div class="proj-card reveal" style="--card-color:var(--amber)">
+        <div class="proj-status"><div class="status-dot live"></div>Live demo available</div>
+        <div class="proj-num">01</div>
+        <div class="proj-name">CYBER SENTINEL</div>
+        <div class="proj-tagline">Agentic AI for NIST SP 800-53 compliance monitoring</div>
+        <div class="proj-desc">Two-agent LLM pipeline that ingests raw system logs, classifies NIST violations using GPT-4o with a Reflexion self-critique loop, then auto-generates Jira tickets for each breach.</div>
+        <div class="proj-metrics">
+          <div class="metric"><div class="metric-val">91.4<span>%</span></div><div class="metric-label">Avg F1 score</div></div>
+          <div class="metric"><div class="metric-val">17<span>K+</span></div><div class="metric-label">Logs processed</div></div>
+          <div class="metric"><div class="metric-val">&lt;5<span>s</span></div><div class="metric-label">Ticket latency</div></div>
+        </div>
+        <div class="proj-stack"><span class="stack-tag">GPT-4o</span><span class="stack-tag">LangChain</span><span class="stack-tag">Pydantic v2</span><span class="stack-tag">AWS Lambda</span><span class="stack-tag">Streamlit</span><span class="stack-tag">NIST 800-53</span><span class="stack-tag">pytest</span></div>
+        <div class="proj-links"><a href="https://github.com/abhistac/cyber-sentinel" target="_blank" class="proj-link primary">GitHub &rarr;</a><a href="#" class="proj-link">Live demo &#8599;</a></div>
+      </div>
+
+      <div class="proj-card reveal" style="--card-color:var(--teal)">
+        <div class="proj-status"><div class="status-dot live"></div>Live demo available</div>
+        <div class="proj-num">02</div>
+        <div class="proj-name">AGENTIC TICKET MANAGER</div>
+        <div class="proj-tagline">3-agent pipeline for IT service desk automation</div>
+        <div class="proj-desc">Full ticket lifecycle automation &mdash; LLM-powered triage and team routing, real-time SLA monitoring, and GPT-4o-written Slack breach alerts. Zero human triage required.</div>
+        <div class="proj-metrics">
+          <div class="metric"><div class="metric-val">3</div><div class="metric-label">AI agents</div></div>
+          <div class="metric"><div class="metric-val">4</div><div class="metric-label">SLA tiers</div></div>
+          <div class="metric"><div class="metric-val">13</div><div class="metric-label">Tests passing</div></div>
+        </div>
+        <div class="proj-stack"><span class="stack-tag">GPT-4o</span><span class="stack-tag">LangChain</span><span class="stack-tag">Slack API</span><span class="stack-tag">Jira REST</span><span class="stack-tag">Streamlit</span><span class="stack-tag">Pydantic v2</span></div>
+        <div class="proj-links"><a href="https://github.com/abhistac/agentic-ticket-manager" target="_blank" class="proj-link primary">GitHub &rarr;</a><a href="#" class="proj-link">Live demo &#8599;</a></div>
+      </div>
+
+      <div class="proj-card reveal" style="--card-color:var(--red)">
+        <div class="proj-status"><div class="status-dot"></div>ML &middot; Tableau dashboard live</div>
+        <div class="proj-num">03</div>
+        <div class="proj-name">FRAUD DETECTION SYSTEM</div>
+        <div class="proj-tagline">Credit card fraud ML with business impact analysis</div>
+        <div class="proj-desc">Ensemble ML across 5 algorithms on 284K+ transactions with 0.17% fraud rate. SMOTE for class imbalance, optimized probability threshold, $5,976 demonstrated net benefit on test data.</div>
+        <div class="proj-metrics">
+          <div class="metric"><div class="metric-val">98<span>%</span></div><div class="metric-label">ROC-AUC</div></div>
+          <div class="metric"><div class="metric-val">284<span>K</span></div><div class="metric-label">Transactions</div></div>
+          <div class="metric"><div class="metric-val">5</div><div class="metric-label">Algorithms</div></div>
+        </div>
+        <div class="proj-stack"><span class="stack-tag">XGBoost</span><span class="stack-tag">LightGBM</span><span class="stack-tag">Scikit-learn</span><span class="stack-tag">SMOTE</span><span class="stack-tag">Tableau</span><span class="stack-tag">Plotly</span></div>
+        <div class="proj-links"><a href="https://github.com/abhistac/fraud-detection-system" target="_blank" class="proj-link primary">GitHub &rarr;</a><a href="https://public.tableau.com/views/Book1_17558033052330/Dashboard1" target="_blank" class="proj-link">Dashboard &#8599;</a></div>
+      </div>
+
+      <div class="proj-card reveal" style="--card-color:var(--blue)">
+        <div class="proj-status"><div class="status-dot"></div>Data Engineering</div>
+        <div class="proj-num">04</div>
+        <div class="proj-name">MYSQL &rarr; POSTGRES CDC</div>
+        <div class="proj-tagline">Real-time Change Data Capture pipeline in Docker</div>
+        <div class="proj-desc">Containerized CDC pipeline replicating MySQL to PostgreSQL via Debezium and Kafka Connect. Handles schema evolution, soft/hard deletes, and topic normalization. Full stack in Docker Compose.</div>
+        <div class="proj-metrics">
+          <div class="metric"><div class="metric-val">5</div><div class="metric-label">Services</div></div>
+          <div class="metric"><div class="metric-val">RT</div><div class="metric-label">Replication</div></div>
+          <div class="metric"><div class="metric-val">0</div><div class="metric-label">Data loss</div></div>
+        </div>
+        <div class="proj-stack"><span class="stack-tag">Debezium</span><span class="stack-tag">Apache Kafka</span><span class="stack-tag">Kafka Connect</span><span class="stack-tag">Docker Compose</span><span class="stack-tag">PostgreSQL</span><span class="stack-tag">MySQL</span></div>
+        <div class="proj-links"><a href="https://github.com/abhistac/mysql-to-postgres-cdc" target="_blank" class="proj-link primary">GitHub &rarr;</a></div>
+      </div>
+
+      <div class="proj-card span2 reveal" style="--card-color:#a78bfa">
+        <div class="proj-status"><div class="status-dot live"></div>Live Tableau dashboard</div>
+        <div class="proj-num">05</div>
+        <div class="proj-name">FRESHRETAIL DEMAND FORECASTING</div>
+        <div class="proj-tagline">End-to-end retail forecasting pipeline on 4.5M+ transaction records</div>
+        <div class="proj-desc">Full pipeline from EDA through feature engineering (lag, rolling, calendar, stock features) to model comparison and real-time simulation. XGBoost significantly outperformed Prophet and all baselines. Tableau Public dashboard with interactive model comparison, store-level 14-day forecasts, and validation results.</div>
+        <div class="proj-metrics">
+          <div class="metric"><div class="metric-val">3.6<span>%</span></div><div class="metric-label">MAPE (XGBoost)</div></div>
+          <div class="metric"><div class="metric-val">10.4</div><div class="metric-label">RMSE best</div></div>
+          <div class="metric"><div class="metric-val">4.5<span>M+</span></div><div class="metric-label">Transactions</div></div>
+          <div class="metric"><div class="metric-val">14<span>d</span></div><div class="metric-label">Forecast horizon</div></div>
+        </div>
+        <div class="proj-stack"><span class="stack-tag">XGBoost</span><span class="stack-tag">Prophet</span><span class="stack-tag">Pandas</span><span class="stack-tag">Scikit-learn</span><span class="stack-tag">Tableau</span><span class="stack-tag">PyArrow</span><span class="stack-tag">Makefile</span><span class="stack-tag">HuggingFace Datasets</span></div>
+        <div class="proj-links"><a href="https://github.com/abhistac/freshretail-demand-forecasting" target="_blank" class="proj-link primary">GitHub &rarr;</a><a href="https://public.tableau.com/views/Book1_17558033052330/RetailDemandForecastingExplorer" target="_blank" class="proj-link">Live dashboard &#8599;</a></div>
+      </div>
+
+      <div class="proj-card span2 reveal" style="--card-color:#34d399">
+        <div class="proj-status"><div class="status-dot live"></div>Live Streamlit app</div>
+        <div class="proj-num">06</div>
+        <div class="proj-name">BIKE SALES ANALYTICS</div>
+        <div class="proj-tagline">End-to-end sales analytics platform with live dashboard</div>
+        <div class="proj-desc">Full analytics pipeline on 100K+ bike sales records. DuckDB for SQL-based analytical queries, automated ETL with deduplication, pre-commit hooks for code quality, GitHub Actions CI, and a deployed Streamlit dashboard. Where it started &mdash; proof that data analysis done well looks like engineering.</div>
+        <div class="proj-metrics">
+          <div class="metric"><div class="metric-val">100<span>K+</span></div><div class="metric-label">Sales records</div></div>
+          <div class="metric"><div class="metric-val">CI</div><div class="metric-label">GitHub Actions</div></div>
+          <div class="metric"><div class="metric-val">Live</div><div class="metric-label">Streamlit app</div></div>
+        </div>
+        <div class="proj-stack"><span class="stack-tag">Python</span><span class="stack-tag">DuckDB</span><span class="stack-tag">Streamlit</span><span class="stack-tag">Plotly</span><span class="stack-tag">Pandas</span><span class="stack-tag">GitHub Actions</span><span class="stack-tag">pre-commit</span></div>
+        <div class="proj-links"><a href="https://github.com/abhistac/bike_sales_analysis" target="_blank" class="proj-link primary">GitHub &rarr;</a><a href="https://bikesalesanalysis-hrmyw3wkmeph4srfmctu7m.streamlit.app/" target="_blank" class="proj-link">Live app &#8599;</a></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-num">03</div>
+      <div class="section-title-block"><div class="section-label">Work history</div><h2>EXPERIENCE</h2></div>
+    </div>
+    <div class="exp-list">
+      <div class="exp-item reveal">
+        <div class="exp-meta"><div class="exp-period">Aug 2025 &ndash; Present</div><div class="exp-org">Saayam For All<br>San Jose, CA</div></div>
+        <div class="exp-content"><div class="exp-role">AI ENGINEER</div><ul class="exp-bullets"><li>Built and deployed <strong>4+ Python AI microservices</strong> on AWS Lambda and MSK, cutting data collection lag from 2&ndash;3 days to minutes across 10,000+ beneficiary records monthly.</li><li>Developed demand forecasting models (Prophet, Random Forest) that <strong>improved outreach planning efficiency by 25%</strong>.</li><li>Built real-time QuickSight dashboards reducing reporting time from <strong>3 days to near real-time</strong>; maintained 99.9% uptime with Redis caching.</li></ul></div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-meta"><div class="exp-period">Jan &ndash; May 2025</div><div class="exp-org">Puerto Rico Science,<br>Technology and<br>Research Trust</div></div>
+        <div class="exp-content"><div class="exp-role">DATA ENGINEER</div><ul class="exp-bullets"><li>Engineered AWS pipeline ingesting <strong>5+ GB of FEMA, NOAA, and Census data</strong> across 78 municipalities in a bronze/silver/gold lake architecture.</li><li>Built Socioeconomic Vulnerability Index using PCA and Random Forest achieving <strong>85% accuracy</strong> against Hurricane Maria damage data.</li><li>Dashboards accelerated policy decisions by <strong>40%</strong>.</li></ul></div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-meta"><div class="exp-period">Jun 2022 &ndash; Jul 2023</div><div class="exp-org">LTIMindtree<br>Hyderabad, India</div></div>
+        <div class="exp-content"><div class="exp-role">CLOUD &amp; DATA ENGINEER</div><ul class="exp-bullets"><li>Migrated <strong>5TB+ of enterprise telemetry</strong> to Azure Data Explorer, cutting query latency by 30%.</li><li>Automated VM scaling for <strong>1,000+ VMs</strong> via PowerShell Runbooks, reducing manual ops by 60%.</li><li>KQL anomaly detection improved system stability by <strong>25%</strong>; dashboards served 200+ stakeholders.</li></ul></div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-meta"><div class="exp-period">Sep 2021 &ndash; Feb 2022</div><div class="exp-org">Susheetronics<br>Hyderabad, India</div></div>
+        <div class="exp-content"><div class="exp-role">DATA ANALYST</div><ul class="exp-bullets"><li>Replaced spreadsheets with normalized MySQL database and automated ETL, cutting daily data entry from <strong>4 hours to 30 minutes</strong>.</li><li>Forecasting models improved reorder accuracy by <strong>15%</strong>, supporting negotiations that saved 5&ndash;10% in procurement costs.</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-num">04</div>
+      <div class="section-title-block"><div class="section-label">Technical</div><h2>SKILLS</h2><p class="section-desc">Tools I've shipped real systems with.</p></div>
+    </div>
+    <div class="skills-table reveal">
+      <div class="skill-cell"><div class="skill-cell-label">AI &amp; LLMs</div><div class="skill-items"><div class="skill-item">GPT-4o / OpenAI API</div><div class="skill-item">LangChain Agents</div><div class="skill-item">HuggingFace Transformers</div><div class="skill-item">BERT / RoBERTa</div><div class="skill-item">Prompt Engineering</div><div class="skill-item">Agentic Workflows</div><div class="skill-item">SHAP / LIME</div></div></div>
+      <div class="skill-cell"><div class="skill-cell-label">ML &amp; Data Science</div><div class="skill-items"><div class="skill-item">PyTorch</div><div class="skill-item">Scikit-learn</div><div class="skill-item">XGBoost / LightGBM</div><div class="skill-item">Prophet / ARIMA</div><div class="skill-item">SMOTE / Imbalanced data</div><div class="skill-item">Feature Engineering</div><div class="skill-item">Model Evaluation</div></div></div>
+      <div class="skill-cell"><div class="skill-cell-label">Data Engineering</div><div class="skill-items"><div class="skill-item">Apache Kafka</div><div class="skill-item">Debezium / CDC</div><div class="skill-item">AWS Glue / Athena</div><div class="skill-item">Azure Data Factory</div><div class="skill-item">dbt / Spark</div><div class="skill-item">DuckDB</div><div class="skill-item">ETL Pipeline Design</div></div></div>
+      <div class="skill-cell"><div class="skill-cell-label">Cloud &amp; DevOps</div><div class="skill-items"><div class="skill-item">AWS Lambda / S3 / MSK</div><div class="skill-item">Azure ADX / Monitor</div><div class="skill-item">Docker / Compose</div><div class="skill-item">FastAPI / Streamlit</div><div class="skill-item">GitHub Actions CI</div><div class="skill-item">pytest / unit testing</div><div class="skill-item">DevSecOps practices</div></div></div>
+      <div class="skill-cell"><div class="skill-cell-label">Languages</div><div class="skill-items"><div class="skill-item">Python</div><div class="skill-item">SQL</div><div class="skill-item">KQL</div><div class="skill-item">PowerShell</div><div class="skill-item">R</div><div class="skill-item">Bash</div></div></div>
+      <div class="skill-cell"><div class="skill-cell-label">Visualization &amp; BI</div><div class="skill-items"><div class="skill-item">Power BI</div><div class="skill-item">Tableau Public</div><div class="skill-item">Plotly / Dash</div><div class="skill-item">AWS QuickSight</div><div class="skill-item">Streamlit</div><div class="skill-item">Matplotlib / Seaborn</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="github">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-num">05</div>
+      <div class="section-title-block"><div class="section-label">Open source</div><h2>ON GITHUB</h2><p class="section-desc">All public. All tested. Click to explore.</p></div>
+    </div>
+    <div class="gh-grid reveal">
+      <a href="https://github.com/abhistac/cyber-sentinel" target="_blank" class="gh-card"><div class="gh-card-lang lang-python"></div><div class="gh-card-name">cyber-sentinel</div><div class="gh-card-desc">Agentic NIST compliance monitor. GPT-4o + LangChain + Reflexion loop + AWS Lambda.</div><div class="gh-card-footer"><span class="gh-card-lang-name">Python</span><span class="gh-card-arrow">&rarr;</span></div></a>
+      <a href="https://github.com/abhistac/agentic-ticket-manager" target="_blank" class="gh-card"><div class="gh-card-lang lang-python"></div><div class="gh-card-name">agentic-ticket-manager</div><div class="gh-card-desc">3-agent IT service desk automation. Triage &rarr; SLA monitor &rarr; Slack alerts.</div><div class="gh-card-footer"><span class="gh-card-lang-name">Python</span><span class="gh-card-arrow">&rarr;</span></div></a>
+      <a href="https://github.com/abhistac/fraud-detection-system" target="_blank" class="gh-card"><div class="gh-card-lang lang-python"></div><div class="gh-card-name">fraud-detection-system</div><div class="gh-card-desc">Ensemble ML for credit card fraud. 98% AUC on 284K transactions. Tableau dashboard.</div><div class="gh-card-footer"><span class="gh-card-lang-name">Python</span><span class="gh-card-arrow">&rarr;</span></div></a>
+      <a href="https://github.com/abhistac/mysql-to-postgres-cdc" target="_blank" class="gh-card"><div class="gh-card-lang lang-docker"></div><div class="gh-card-name">mysql-to-postgres-cdc</div><div class="gh-card-desc">Real-time CDC pipeline. Debezium + Kafka Connect + Docker Compose. Schema evolution.</div><div class="gh-card-footer"><span class="gh-card-lang-name">Dockerfile</span><span class="gh-card-arrow">&rarr;</span></div></a>
+      <a href="https://github.com/abhistac/freshretail-demand-forecasting" target="_blank" class="gh-card"><div class="gh-card-lang lang-jupyter"></div><div class="gh-card-name">freshretail-demand-forecasting</div><div class="gh-card-desc">XGBoost forecasting on 4.5M+ records. MAPE 3.6%. Real-time simulation. Tableau dashboard.</div><div class="gh-card-footer"><span class="gh-card-lang-name">Jupyter Notebook</span><span class="gh-card-arrow">&rarr;</span></div></a>
+      <a href="https://github.com/abhistac/bike_sales_analysis" target="_blank" class="gh-card"><div class="gh-card-lang lang-python"></div><div class="gh-card-name">bike_sales_analysis</div><div class="gh-card-desc">DuckDB analytics + Streamlit dashboard on 100K+ sales records. CI/CD. Live app deployed.</div><div class="gh-card-footer"><span class="gh-card-lang-name">Python</span><span class="gh-card-arrow">&rarr;</span></div></a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-split reveal">
+      <div class="contact-left">
+        <div class="contact-heading">LET'S<br><span>WORK.</span></div>
+        <p class="contact-body">Open to AI Engineer and Data Engineer roles. I respond within 24 hours. If you want someone who has actually built and shipped LLM agents, real data pipelines, and ML systems &mdash; let's talk.</p>
+        <div class="contact-links-stack">
+          <a href="mailto:abhistaca@gmail.com" class="contact-link">abhistaca@gmail.com<span class="contact-link-arrow">&rarr;</span></a>
+          <a href="https://linkedin.com/in/abhistac" target="_blank" class="contact-link">linkedin.com/in/abhistac<span class="contact-link-arrow">&#8599;</span></a>
+          <a href="https://github.com/abhistac" target="_blank" class="contact-link">github.com/abhistac<span class="contact-link-arrow">&#8599;</span></a>
+        </div>
+      </div>
+      <div class="contact-right">
+        <div class="contact-stat-grid">
+          <div class="contact-stat"><div class="contact-stat-val">6</div><div class="contact-stat-label">Projects shipped</div></div>
+          <div class="contact-stat"><div class="contact-stat-val">25</div><div class="contact-stat-label">Tests passing</div></div>
+          <div class="contact-stat"><div class="contact-stat-val">3</div><div class="contact-stat-label">Live demos</div></div>
+          <div class="contact-stat"><div class="contact-stat-val">4yr</div><div class="contact-stat-label">In the field</div></div>
+        </div>
+        <p class="contact-note">M.S. Data Analytics &amp; Engineering &mdash; George Mason University, 2025.<br>B.E. Mechanical Engineering &mdash; Osmania University, 2021.<br>Based in San Jose, CA. Open to remote and hybrid.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Abhista Atchutuni &middot; AI &amp; Data Engineer &middot; San Jose, CA</span>
+  <span>abhistac.github.io &middot; 2026</span>
+</footer>
+
+<script>
+const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
